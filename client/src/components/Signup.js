@@ -29,25 +29,28 @@ export const SignupForm = () => {
       .max(125),
   });
 
-  const formik = useFormik({
+ const formik = useFormik({
     initialValues: {
       name: "",
       email: "",
-      age: "",
+      age:"",
     },
     validationSchema: formSchema,
-    onSubmit: (values) => {
+onSubmit: (values) => {
       fetch("customers", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(values, null, 2),
-      }).then((res) => {
-        if (res.status == 200) {
-          setRefreshPage(!refreshPage);
+      }).then(
+        (res) => {
+          if (res.status == 200){
+            setRefreshPage(!refreshPage)
+          }
         }
-      });
+      )
+
     },
   });
 
